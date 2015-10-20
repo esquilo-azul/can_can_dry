@@ -1,13 +1,12 @@
-require 'pathname'
-lib_root = Pathname.new(File.expand_path('..', __FILE__))
-exclude = %w(can_can_dry can_can_dry/railtie can_can_dry/version)
-Dir.glob("#{lib_root}/**/*.rb") do |f|
-  rp = Pathname.new(f).relative_path_from(lib_root).sub(/\.rb\z/, '')
-  require_dependency rp unless exclude.include?(rp.to_s)
-end
-
-require 'can_can_dry/railtie'
-
 module CanCanDry
+  require 'can_can_dry/railtie'
+  require_dependency 'can_can_dry/controller_authorization'
+  require_dependency 'can_can_dry/ability_mapping_sets/devise'
+  require_dependency 'can_can_dry/ability_mapping_sets/devise_invitable'
+  require_dependency 'can_can_dry/ability_mapping'
+  require_dependency 'can_can_dry/ability_mapping/path_mapping_not_found'
+  require_dependency 'can_can_dry/ability_mapping/action_mapping_not_found'
+  require_dependency 'can_can_dry/helpers/can_can_dry_helper'
+
   ActionView::Base.send :include, CanCanDry::Helpers::CanCanDryHelper
 end
