@@ -1,3 +1,5 @@
+require_dependency 'can_can_dry/helpers/can_can_dry_helper'
+
 module CanCanDry
   module ControllerAuthorization
     include CanCanDry::Helpers::CanCanDryHelper
