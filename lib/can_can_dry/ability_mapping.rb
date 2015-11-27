@@ -14,6 +14,15 @@ module CanCanDry
       map_action(controller, ALL_ACTION, *can_actions)
     end
 
+    # 1. Encontra o controller associado a resource.
+    # 2. Mapeia:
+    # * map_action(controller, 'index', :read, resource)
+    # * map_action(controller, 'show', :read, resource)
+    # * map_action(controller, 'new', :create, resource)
+    # * map_action(controller, 'create', :create, resource)
+    # * map_action(controller, 'update', :update, resource)
+    # * map_action(controller, 'edit', :update, resource)
+    # * map_action(controller, 'destroy', :destroy, resource)
     def map_resources(resource)
       RESOURCES_ACTION_MAPPING.each do |can_action, actions|
         actions.each do |action|
