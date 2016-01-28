@@ -23,10 +23,11 @@ module CanCanDry
     # * map_action(controller, 'update', :update, resource)
     # * map_action(controller, 'edit', :update, resource)
     # * map_action(controller, 'destroy', :destroy, resource)
-    def map_resources(resource)
+    def map_resources(resource, controller = nil)
+      controller ||= controller_by_resource(resource)
       RESOURCES_ACTION_MAPPING.each do |can_action, actions|
         actions.each do |action|
-          map_action(controller_by_resource(resource), action, can_action, resource)
+          map_action(controller, action, can_action, resource)
         end
       end
     end
