@@ -43,7 +43,7 @@ module CanCanDry
     end
 
     def can_args_by_path(path, method)
-      can_args_by_path_hash(Rails.application.routes.recognize_path(path, method: method))
+      can_args_by_path_hash(recognize_path(path, method))
     rescue ActionMappingNotFound => ex
       raise PathMappingNotFound.new(path, method, ex)
     end
@@ -74,6 +74,10 @@ module CanCanDry
       return @mapping[controller][action] if @mapping[controller][action]
       return @mapping[controller][ALL_ACTION] if @mapping[controller][ALL_ACTION]
       fail ActionMappingNotFound.new(controller, action)
+    end
+
+    def recognize_path(path, method)
+      ::CanCanDry::PathRecognizer.recognize(path, method: method)
     end
   end
 end
