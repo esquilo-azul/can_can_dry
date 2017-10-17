@@ -1,4 +1,5 @@
 require 'active_support/dependencies'
+require 'cancancan'
 
 module CanCanDry
   require 'can_can_dry/railtie'

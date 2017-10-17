@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Autorização DRY com CanCanCan.'
 
   s.add_dependency 'activesupport', '>= 4.2.1'
+  s.add_dependency 'cancancan', '>= 1.13.0'
 
   s.files = Dir['{app,config,db,lib}/**/*']
   s.test_files = Dir['test/**/*']
