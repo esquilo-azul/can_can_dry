@@ -8,7 +8,9 @@ module CanCanDry
     }
     ALL_ACTION = 'ALL'
 
-    attr_reader :mapping
+    def mapping
+      @mapping ||= {}
+    end
 
     def map_controller(controller, *can_actions)
       map_action(controller, ALL_ACTION, *can_actions)
@@ -36,10 +38,9 @@ module CanCanDry
       if can_args.count == 1
         fail "\"can_args\" deve ter 0 ou 2 ou mais elementos (can_args.count=#{can_args.count})"
       end
-      @mapping ||= {}
-      @mapping[controller] ||= {}
-      @mapping[controller][action] ||= []
-      @mapping[controller][action] << can_args
+      mapping[controller] ||= {}
+      mapping[controller][action] ||= []
+      mapping[controller][action] << can_args
     end
 
     def can_args_by_path(path, method)
@@ -70,9 +71,9 @@ module CanCanDry
 
     def find_can_args_list(controller, action)
       controller = ActiveSupport::Inflector.camelize(controller)
-      fail ActionMappingNotFound.new(controller, action) unless @mapping[controller]
-      return @mapping[controller][action] if @mapping[controller][action]
-      return @mapping[controller][ALL_ACTION] if @mapping[controller][ALL_ACTION]
+      fail ActionMappingNotFound.new(controller, action) unless mapping[controller]
+      return mapping[controller][action] if mapping[controller][action]
+      return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
       fail ActionMappingNotFound.new(controller, action)
     end
 
