@@ -2,7 +2,7 @@ module CanCanDry
   module Helpers
     module CanCanDryHelper
       def ability_mapping
-        @ability_mapping ||= AbilityMapping.new
+        @ability_mapping ||= ::AbilityMapping.new
       end
 
       def can_by_path?(path, method = :get)
