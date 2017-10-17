@@ -1,3 +1,5 @@
+require 'active_support/dependencies'
+
 module CanCanDry
   require 'can_can_dry/railtie'
   require_dependency 'can_can_dry/controller_authorization'
