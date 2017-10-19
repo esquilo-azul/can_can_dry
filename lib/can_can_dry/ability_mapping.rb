@@ -36,7 +36,7 @@ module CanCanDry
 
     def map_action(controller, action, *can_args)
       if can_args.count == 1
-        fail "\"can_args\" deve ter 0 ou 2 ou mais elementos (can_args.count=#{can_args.count})"
+        raise "\"can_args\" deve ter 0 ou 2 ou mais elementos (can_args.count=#{can_args.count})"
       end
       mapping[controller] ||= {}
       mapping[controller][action] ||= []
@@ -59,7 +59,7 @@ module CanCanDry
     def replace_model_by_record(can_args_args, id)
       can_args_args.map do |can_args|
         ca = can_args.dup
-        ca[1] = ca[1].find_by_id(id) if id && ca[1]
+        ca[1] = ca[1].find_by_id(id) if id && ca[1].respond_to?(:find_by_id)
         ca
       end
     end
