@@ -43,8 +43,8 @@ module CanCanDry
       mapping[controller][action] << can_args
     end
 
-    def can_args_by_path(path, method)
-      can_args_by_path_hash(recognize_path(path, method))
+    def can_args_by_path(root_path, path, method)
+      can_args_by_path_hash(recognize_path(root_path, path, method))
     rescue ActionMappingNotFound => ex
       raise PathMappingNotFound.new(path, method, ex)
     end
@@ -71,14 +71,14 @@ module CanCanDry
 
     def find_can_args_list(controller, action)
       controller = ActiveSupport::Inflector.camelize(controller)
-      fail ActionMappingNotFound.new(controller, action) unless mapping[controller]
+      raise ActionMappingNotFound.new(controller, action) unless mapping[controller]
       return mapping[controller][action] if mapping[controller][action]
       return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
-      fail ActionMappingNotFound.new(controller, action)
+      raise ActionMappingNotFound.new(controller, action)
     end
 
-    def recognize_path(path, method)
-      ::CanCanDry::PathRecognizer.recognize(path, method: method)
+    def recognize_path(root_path, path, method)
+      ::CanCanDry::PathRecognizer.recognize(root_path, path, method: method)
     end
   end
 end

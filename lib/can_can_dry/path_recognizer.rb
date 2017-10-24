@@ -3,7 +3,8 @@ module CanCanDry
   # /lib/awesome_admin_layout/recognize_path.rb
   module PathRecognizer
     class << self
-      def recognize(path, options = {})
+      def recognize(root_path, path, options = {})
+        path = remove_root_path(root_path, path)
         return Rails.application.routes.recognize_path(path, options)
       rescue ActionController::RoutingError
         Rails::Engine.subclasses.each do |engine|
@@ -14,6 +15,11 @@ module CanCanDry
       end
 
       private
+
+      def remove_root_path(root_path, path)
+        path = path.gsub(/\A#{Regexp.quote(root_path)}/, '')
+        path.gsub(%r{\A/*}, '/')
+      end
 
       def engine_recognize(engine, path, options)
         engine_path = path_for_engine(engine.instance.class, path)
