@@ -12,5 +12,6 @@ module CanCanDry
   require_dependency 'can_can_dry/helpers/can_can_dry_helper'
   require_dependency 'can_can_dry/path_recognizer'
 
+  require_dependency 'action_view'
   ActionView::Base.send :include, CanCanDry::Helpers::CanCanDryHelper
 end
