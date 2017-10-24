@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.2.1'
   s.add_dependency 'cancancan', '>= 1.13.0'
 
-  s.files = Dir['{app,config,db,lib}/**/*']
+  s.add_development_dependency 'rake', '>= 12.1.0'
+
+  s.files = Dir['{app,config,db,lib}/**/*', 'Rakefile']
   s.test_files = Dir['test/**/*']
 end
