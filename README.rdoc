@@ -6,3 +6,5 @@ DRY authorization for Rails with {CanCan}[https://github.com/ryanb/cancan].
 }[https://badge.fury.io/rb/can_can_dry]
 {<img src="https://travis-ci.org/eduardobogoni/can_can_dry.svg?branch=master" alt="Build Status" />
 }[https://travis-ci.org/eduardobogoni/can_can_dry]
+{<img src="https://api.codeclimate.com/v1/badges/261ff5dcb535b743f468/maintainability" />
+}[https://codeclimate.com/github/eduardobogoni/can_can_dry/maintainability]
