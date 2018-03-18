@@ -1,3 +1,6 @@
 = CanCanDry
 
 DRY authorization for Rails with {CanCan}[https://github.com/ryanb/cancan].
+
+{<img src="https://badge.fury.io/rb/can_can_dry.svg" alt="Gem Version" />
+}[https://badge.fury.io/rb/can_can_dry]
