@@ -8,3 +8,5 @@ DRY authorization for Rails with {CanCan}[https://github.com/ryanb/cancan].
 }[https://travis-ci.org/eduardobogoni/can_can_dry]
 {<img src="https://api.codeclimate.com/v1/badges/261ff5dcb535b743f468/maintainability" />
 }[https://codeclimate.com/github/eduardobogoni/can_can_dry/maintainability]
+{<img src="https://api.codeclimate.com/v1/badges/261ff5dcb535b743f468/test_coverage" />
+}[https://codeclimate.com/github/eduardobogoni/can_can_dry/test_coverage]
