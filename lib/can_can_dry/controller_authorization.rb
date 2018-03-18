@@ -16,7 +16,11 @@ module CanCanDry
     end
 
     def ability_mapping
-      @ability_mapping ||= ::AbilityMapping.new
+      @ability_mapping ||= begin
+        require_dependency 'ability_mapping'
+        require_dependency 'ability'
+        ::AbilityMapping.new
+      end
     end
   end
 end
