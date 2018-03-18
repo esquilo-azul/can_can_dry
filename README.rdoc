@@ -1,0 +1,3 @@
+= CanCanDry
+
+DRY authorization for Rails with {CanCan}[https://github.com/ryanb/cancan].
