@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    can_can_dry (0.0.7)
+    can_can_dry (0.0.8)
       cancancan (>= 1.13.0)
       rails (>= 4.2.1)
 
