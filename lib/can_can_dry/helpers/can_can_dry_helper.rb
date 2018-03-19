@@ -6,7 +6,7 @@ module CanCanDry
       end
 
       def can_by_path?(path, method = :get)
-        can_by_can_args(ability_mapping.can_args_by_path(root_path, path, method))
+        can_by_can_args(ability_mapping.can_args_by_path(main_app.root_path, path, method))
       end
 
       def can_by_path_hash?(path_hash)
