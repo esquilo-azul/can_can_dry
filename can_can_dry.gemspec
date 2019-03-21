@@ -8,7 +8,8 @@ Gem::Specification.new do |s|
   s.version     = CanCanDry::VERSION
   s.authors     = ['Esquilo Azul Company']
   s.summary     = 'DRY authorization with CanCanCan.'
-  s.homepage    = 'https://github.com/eduardobogoni/can_can_dry'
+  s.homepage    = 'https://github.com/esquilo-azul/can_can_dry'
+  s.metadata    = { 'source_code_uri' => 'https://github.com/esquilo-azul/can_can_dry' }
 
   s.add_dependency 'rails', '>= 4.2.1'
   s.add_dependency 'cancancan', '>= 1.13.0'

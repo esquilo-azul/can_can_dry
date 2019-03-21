@@ -4,13 +4,13 @@ DRY authorization for Rails with {CanCan}[https://github.com/ryanb/cancan].
 
 {<img src="https://badge.fury.io/rb/can_can_dry.svg" alt="Gem Version" />
 }[https://badge.fury.io/rb/can_can_dry]
-{<img src="https://travis-ci.org/eduardobogoni/can_can_dry.svg?branch=master" alt="Build Status" />
-}[https://travis-ci.org/eduardobogoni/can_can_dry]
+{<img src="https://travis-ci.org/esquilo-azul/can_can_dry.svg?branch=master" alt="Build Status" />
+}[https://travis-ci.org/esquilo-azul/can_can_dry]
 {<img src="https://api.codeclimate.com/v1/badges/261ff5dcb535b743f468/maintainability" />
-}[https://codeclimate.com/github/eduardobogoni/can_can_dry/maintainability]
+}[https://codeclimate.com/github/esquilo-azul/can_can_dry/maintainability]
 {<img src="https://api.codeclimate.com/v1/badges/261ff5dcb535b743f468/test_coverage" />
-}[https://codeclimate.com/github/eduardobogoni/can_can_dry/test_coverage]
-{<img src="https://beta.gemnasium.com/badges/github.com/eduardobogoni/can_can_dry.svg"
-alt="Dependency Status" />}[https://beta.gemnasium.com/projects/github.com/eduardobogoni/can_can_dry]
-{<img src="http://inch-ci.org/github/eduardobogoni/can_can_dry.svg?branch=master" alt="Inline docs" />
-}[http://inch-ci.org/github/eduardobogoni/can_can_dry]
+}[https://codeclimate.com/github/esquilo-azul/can_can_dry/test_coverage]
+{<img src="https://beta.gemnasium.com/badges/github.com/esquilo-azul/can_can_dry.svg"
+alt="Dependency Status" />}[https://beta.gemnasium.com/projects/github.com/esquilo-azul/can_can_dry]
+{<img src="http://inch-ci.org/github/esquilo-azul/can_can_dry.svg?branch=master" alt="Inline docs" />
+}[http://inch-ci.org/github/esquilo-azul/can_can_dry]
