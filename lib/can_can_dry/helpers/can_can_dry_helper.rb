@@ -45,9 +45,9 @@ module CanCanDry
       def can_by_can_args(can_args_args)
         can_args_args.each do |c|
           next if c.empty?
-          return false unless can?(*c)
+          return true if can?(*c)
         end
-        true
+        false
       end
     end
   end
