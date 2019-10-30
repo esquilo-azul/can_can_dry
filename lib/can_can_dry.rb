@@ -4,6 +4,7 @@ require 'cancancan'
 module CanCanDry
   require 'can_can_dry/railtie'
   require_dependency 'can_can_dry/controller_authorization'
+  require_dependency 'can_can_dry/ability_mapping_sets/active_scaffold'
   require_dependency 'can_can_dry/ability_mapping_sets/devise'
   require_dependency 'can_can_dry/ability_mapping_sets/devise_invitable'
   require_dependency 'can_can_dry/ability_mapping'
