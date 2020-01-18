@@ -43,11 +43,17 @@ module CanCanDry
       end
 
       def can_by_can_args(can_args_args)
+        assert_can_method
         can_args_args.each do |c|
           next if c.empty?
           return true if can?(*c)
         end
         false
+      end
+
+      def assert_can_method
+        return if respond_to?('can?')
+        singleton_class.include(::CanCanDry::NoControllerCanCanAdditions)
       end
     end
   end
