@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CanCanDry
   # A substitute for CanCan::ControllerAdditions when no controller is present.
   module NoControllerCanCanAdditions

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :can_can_dry do
   desc 'Mostra o mapeamento de CanCanDry'
   task ability_mapping: :environment do

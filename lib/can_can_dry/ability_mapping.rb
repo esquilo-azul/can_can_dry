@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 module CanCanDry
   module AbilityMapping
     RESOURCES_ACTION_MAPPING = {
-      read: %w(index show),
-      create: %w(new create),
-      update: %w(update edit),
-      destroy: %w(destroy)
-    }
+      read: %w[index show],
+      create: %w[new create],
+      update: %w[update edit],
+      destroy: %w[destroy]
+    }.freeze
     ALL_ACTION = 'ALL'
 
     def mapping
@@ -38,6 +40,7 @@ module CanCanDry
       if can_args.count == 1
         raise "\"can_args\" deve ter 0 ou 2 ou mais elementos (can_args.count=#{can_args.count})"
       end
+
       mapping[controller] ||= {}
       mapping[controller][action] ||= []
       mapping[controller][action] << can_args
@@ -45,8 +48,8 @@ module CanCanDry
 
     def can_args_by_path(root_path, path, method)
       can_args_by_path_hash(recognize_path(root_path, path, method))
-    rescue ActionMappingNotFound => ex
-      raise PathMappingNotFound.new(path, method, ex)
+    rescue ActionMappingNotFound => e
+      raise PathMappingNotFound.new(path, method, e)
     end
 
     def can_args_by_path_hash(path_hash)
@@ -59,7 +62,7 @@ module CanCanDry
     def replace_model_by_record(can_args_args, id)
       can_args_args.map do |can_args|
         ca = can_args.dup
-        ca[1] = ca[1].find_by_id(id) if id && ca[1].respond_to?(:find_by_id)
+        ca[1] = ca[1].find_by(id: id) if id && ca[1].respond_to?(:find_by_id)
         ca
       end
     end
@@ -74,8 +77,11 @@ module CanCanDry
       raise ActionMappingNotFound.new(controller, action) unless mapping[controller]
       return mapping[controller][action] if mapping[controller][action]
       return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
+
       raise ActionMappingNotFound.new(controller, action)
     end
+
+    def normalize_controller(controller); end
 
     def recognize_path(root_path, path, method)
       ::CanCanDry::PathRecognizer.recognize(root_path, path, method: method)

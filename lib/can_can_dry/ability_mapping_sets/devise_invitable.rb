@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CanCanDry
   module AbilityMappingSets
     module DeviseInvitable
