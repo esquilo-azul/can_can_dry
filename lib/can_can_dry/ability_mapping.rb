@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
+
 module CanCanDry
   module AbilityMapping
     RESOURCES_ACTION_MAPPING = {
@@ -73,18 +75,47 @@ module CanCanDry
     end
 
     def find_can_args_list(controller, action)
-      controller = ActiveSupport::Inflector.camelize(controller)
-      raise ActionMappingNotFound.new(controller, action) unless mapping[controller]
-      return mapping[controller][action] if mapping[controller][action]
-      return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
-
-      raise ActionMappingNotFound.new(controller, action)
+      FindCanArgsList.new(mapping, controller, action).find
     end
-
-    def normalize_controller(controller); end
 
     def recognize_path(root_path, path, method)
       ::CanCanDry::PathRecognizer.recognize(root_path, path, method: method)
+    end
+
+    class FindCanArgsList
+      ALL_ACTION = ::CanCanDry::AbilityMapping::ALL_ACTION
+      common_constructor :mapping, :controller, :action
+
+      set_callback :initialize, :after do
+        @controller = ::ActiveSupport::Inflector.camelize(controller)
+      end
+
+      def find
+        validate
+        find_by_action || find_by_all_action || raise_mapping_not_found
+      end
+
+      private
+
+      def find_by_action
+        return mapping[controller][action] if mapping[controller][action]
+      end
+
+      def find_by_all_action
+        return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
+      end
+
+      def mapping_has_controller?
+        mapping[controller]
+      end
+
+      def raise_mapping_not_found
+        raise(ActionMappingNotFound.new(controller, action))
+      end
+
+      def validate
+        raise ActionMappingNotFound.new(controller, action) unless mapping_has_controller?
+      end
     end
   end
 end

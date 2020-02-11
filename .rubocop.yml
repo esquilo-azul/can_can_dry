@@ -22,6 +22,10 @@ Metrics/MethodLength:
   Exclude:
     - '**/db/migrate/*'
 
+Rails/DynamicFindBy:
+  Exclude:
+    - lib/can_can_dry/ability_mapping.rb
+
 Style/Documentation:
   Enabled: false
 
