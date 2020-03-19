@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CanCanDry
   # Copiado de https://github.com/appirits/awesome_admin_layout
   # /lib/awesome_admin_layout/recognize_path.rb
@@ -5,7 +7,7 @@ module CanCanDry
     class << self
       def recognize(root_path, path, options = {})
         path = remove_root_path(root_path, path)
-        return Rails.application.routes.recognize_path(path, options)
+        Rails.application.routes.recognize_path(path, options)
       rescue ActionController::RoutingError
         Rails::Engine.subclasses.each do |engine|
           recognized_path = engine_recognize(engine, path, options)
@@ -24,6 +26,7 @@ module CanCanDry
       def engine_recognize(engine, path, options)
         engine_path = path_for_engine(engine.instance.class, path)
         return unless engine_path
+
         begin
           return engine.instance.routes.recognize_path(engine_path, options)
         rescue ActionController::RoutingError => e
@@ -35,6 +38,7 @@ module CanCanDry
       def path_for_engine(engine_class, path)
         engine_route = Rails.application.routes.routes.find { |r| app_class_for(r) == engine_class }
         return unless engine_route
+
         path.gsub(/^#{engine_route.path.spec}/, '')
       end
 

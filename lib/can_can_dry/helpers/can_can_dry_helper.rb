@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CanCanDry
   module Helpers
     module CanCanDryHelper
@@ -53,6 +55,7 @@ module CanCanDry
 
       def assert_can_method
         return if respond_to?('can?')
+
         singleton_class.include(::CanCanDry::NoControllerCanCanAdditions)
       end
     end

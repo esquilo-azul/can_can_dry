@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/dependencies'
 require 'cancancan'
 
@@ -15,5 +17,5 @@ module CanCanDry
   require_dependency 'can_can_dry/path_recognizer'
 
   require_dependency 'action_view'
-  ActionView::Base.send :include, CanCanDry::Helpers::CanCanDryHelper
+  ActionView::Base.include CanCanDry::Helpers::CanCanDryHelper
 end

@@ -1,5 +1,6 @@
-# encoding: UTF-8
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+
+$LOAD_PATH.push File.expand_path('lib', __dir__)
 
 require 'can_can_dry/version'
 
@@ -11,8 +12,9 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/esquilo-azul/can_can_dry'
   s.metadata    = { 'source_code_uri' => 'https://github.com/esquilo-azul/can_can_dry' }
 
-  s.add_dependency 'rails', '>= 4.2.1'
   s.add_dependency 'cancancan', '>= 1.13.0'
+  s.add_dependency 'eac_ruby_utils', '~> 0.21'
+  s.add_dependency 'rails', '>= 4.2.1'
 
   s.add_development_dependency 'rake', '>= 12.1.0'
 
