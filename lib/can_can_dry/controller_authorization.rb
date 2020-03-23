@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-require_dependency 'can_can_dry/helpers/can_can_dry_helper'
-
 module CanCanDry
   module ControllerAuthorization
-    include CanCanDry::Helpers::CanCanDryHelper
+    extend ::ActiveSupport::Concern
+
+    included do
+      include ::CanCanDryHelper
+    end
 
     def authorize_by_ability_mapping
       raise CanCan::AccessDenied, "Falhou ao tentar acessar #{path_hash}" unless

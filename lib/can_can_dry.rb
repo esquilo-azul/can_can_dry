@@ -13,10 +13,6 @@ module CanCanDry
   require_dependency 'can_can_dry/ability_mapping/path_mapping_not_found'
   require_dependency 'can_can_dry/ability_mapping/action_mapping_not_found'
   require_dependency 'can_can_dry/engine'
-  require_dependency 'can_can_dry/helpers/can_can_dry_helper'
   require_dependency 'can_can_dry/no_controller_can_can_additions'
   require_dependency 'can_can_dry/path_recognizer'
-
-  require_dependency 'action_view'
-  ActionView::Base.include CanCanDry::Helpers::CanCanDryHelper
 end
