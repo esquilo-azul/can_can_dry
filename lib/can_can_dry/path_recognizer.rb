@@ -65,7 +65,7 @@ module CanCanDry
     end
 
     def app_class_for(route)
-      if Rails.version =~ /\A4\.2\./
+      if Rails.version >= '4.2'
         # for Rails 4.2
         route.app.app
       else
