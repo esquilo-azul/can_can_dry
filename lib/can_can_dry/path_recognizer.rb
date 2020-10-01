@@ -1,55 +1,76 @@
 # frozen_string_literal: true
 
+require 'eac_ruby_utils/core_ext'
+
 module CanCanDry
   # Copiado de https://github.com/appirits/awesome_admin_layout
   # /lib/awesome_admin_layout/recognize_path.rb
-  module PathRecognizer
+  class PathRecognizer
     class << self
       def recognize(root_path, path, options = {})
-        path = remove_root_path(root_path, path)
-        Rails.application.routes.recognize_path(path, options)
-      rescue ActionController::RoutingError
-        Rails::Engine.subclasses.each do |engine|
-          recognized_path = engine_recognize(engine, path, options)
-          return recognized_path if recognized_path
-        end
-        raise "Path not recognized: \"#{path}\" (Options: #{options})"
+        new(root_path, path, options).recognize_or_raise
       end
-
-      private
 
       def remove_root_path(root_path, path)
         path = path.gsub(/\A#{Regexp.quote(root_path)}/, '')
         path.gsub(%r{\A/*}, '/')
       end
+    end
 
-      def engine_recognize(engine, path, options)
-        engine_path = path_for_engine(engine.instance.class, path)
-        return unless engine_path
+    common_constructor :root_path, :path, :options do
+      self.path = self.class.remove_root_path(root_path, path)
+    end
 
-        begin
-          return engine.instance.routes.recognize_path(engine_path, options)
-        rescue ActionController::RoutingError => e
-          Rails.logger.debug "[#{engine}] ActionController::RoutingError: #{e.message}"
-        end
-        nil
+    def recognize_or_raise
+      recognize || raise("Path not recognized: \"#{path}\" (Options: #{options})")
+    end
+
+    def recognize
+      core_recognize || engines_recognize
+    end
+
+    private
+
+    def core_recognize
+      Rails.application.routes.recognize_path(path, options)
+    rescue ActionController::RoutingError
+      nil
+    end
+
+    def engines_recognize
+      Rails::Engine.subclasses.each do |engine|
+        recognized_path = engine_recognize(engine)
+        return recognized_path if recognized_path
       end
+      nil
+    end
 
-      def path_for_engine(engine_class, path)
-        engine_route = Rails.application.routes.routes.find { |r| app_class_for(r) == engine_class }
-        return unless engine_route
+    def engine_recognize(engine)
+      engine_path = path_for_engine(engine.instance.class)
+      return unless engine_path
 
-        path.gsub(/^#{engine_route.path.spec}/, '')
+      begin
+        return engine.instance.routes.recognize_path(engine_path, options)
+      rescue ActionController::RoutingError => e
+        Rails.logger.debug "[#{engine}] ActionController::RoutingError: #{e.message}"
       end
+      nil
+    end
 
-      def app_class_for(route)
-        if Rails.version =~ /\A4\.2\./
-          # for Rails 4.2
-          route.app.app
-        else
-          # for Rails 4.1, 4.0, 3.2
-          route.app
-        end
+    def path_for_engine(engine_class)
+      engine_route = Rails.application.routes.routes.find { |r| app_class_for(r) == engine_class }
+      return unless engine_route
+
+      path.gsub(/^#{engine_route.path.spec}/, '')
+    end
+
+    def app_class_for(route)
+      if Rails.version =~ /\A4\.2\./
+        # for Rails 4.2
+        route.app.app
+      else
+        # for Rails 4.1, 4.0, 3.2
+        route.app
       end
     end
   end
