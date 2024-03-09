@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-  - lib/can_can_dry/ability_mapping/action_mapping_not_found.rb
 Lint/RedundantCopDisableDirective:
   Exclude:
   - app/helpers/can_can_dry_helper.rb
