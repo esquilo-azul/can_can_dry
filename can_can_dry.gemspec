@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.metadata    = { 'source_code_uri' => 'https://github.com/esquilo-azul/can_can_dry' }
 
   s.add_dependency 'cancancan', '~> 3.5'
-  s.add_dependency 'eac_ruby_utils', '~> 0.95', '>= 0.95.1'
+  s.add_dependency 'eac_ruby_utils', '~> 0.121'
   s.add_dependency 'rails', '>= 4.2.1'
 
   s.add_development_dependency 'eac_ruby_gem_support', '~> 0.4', '>= 0.4.1'
