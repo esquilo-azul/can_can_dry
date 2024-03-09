@@ -98,11 +98,11 @@ module CanCanDry
       private
 
       def find_by_action
-        return mapping[controller][action] if mapping[controller][action]
+        mapping[controller][action]
       end
 
       def find_by_all_action
-        return mapping[controller][ALL_ACTION] if mapping[controller][ALL_ACTION]
+        mapping[controller][ALL_ACTION]
       end
 
       def mapping_has_controller?
