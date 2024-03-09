@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'eac_ruby_utils', '~> 0.121'
   s.add_dependency 'rails', '>= 4.2.1'
 
-  s.add_development_dependency 'eac_ruby_gem_support', '~> 0.4', '>= 0.4.1'
+  s.add_development_dependency 'eac_rails_gem_support', '~> 0.9', '>= 0.9.2'
 
   s.files = Dir['{app,config,db,lib}/**/*']
   s.test_files = Dir['spec/**/*']

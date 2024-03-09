@@ -1,25 +1,28 @@
-require:
-  - rubocop-rails
-  - rubocop-rspec
-
-AllCops:
-  TargetRubyVersion: 2.4
-
-Layout/LineLength:
-  Max: 100
-
-Rails/DynamicFindBy:
+---
+inherit_gem:
+  eac_rails_gem_support: ".rubocop.yml"
+Gemspec/DeprecatedAttributeAssignment:
   Exclude:
-    - lib/can_can_dry/ability_mapping.rb
-
-Style/Documentation:
-  Enabled: false
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
+  - can_can_dry.gemspec
+Gemspec/RequiredRubyVersion:
+  Exclude:
+  - can_can_dry.gemspec
+Layout/LineEndStringConcatenationIndentation:
+  Exclude:
+  - lib/can_can_dry/ability_mapping/action_mapping_not_found.rb
+Lint/RedundantCopDisableDirective:
+  Exclude:
+  - app/helpers/can_can_dry_helper.rb
+Rails/EagerEvaluationLogMessage:
+  Exclude:
+  - lib/can_can_dry/path_recognizer.rb
+Style/RedundantConstantBase:
+  Exclude:
+  - Gemfile
+  - lib/tasks/can_can_dry.rake
+  - spec/lib/can_can_dry/path_recognizer_spec.rb
+  - spec/lib/rubocop_check_spec.rb
+  - spec/spec_helper.rb
+Style/RedundantReturn:
+  Exclude:
+  - lib/can_can_dry/ability_mapping.rb
