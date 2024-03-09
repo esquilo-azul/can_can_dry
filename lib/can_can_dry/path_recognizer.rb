@@ -52,7 +52,7 @@ module CanCanDry
       begin
         return engine.instance.routes.recognize_path(engine_path, options)
       rescue ActionController::RoutingError => e
-        Rails.logger.debug "[#{engine}] ActionController::RoutingError: #{e.message}"
+        Rails.logger.debug { "[#{engine}] ActionController::RoutingError: #{e.message}" }
       end
       nil
     end

@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Rails/EagerEvaluationLogMessage:
-  Exclude:
-  - lib/can_can_dry/path_recognizer.rb
 Style/RedundantConstantBase:
   Exclude:
   - Gemfile
