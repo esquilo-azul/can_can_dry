@@ -2,7 +2,7 @@
 
 module CanCanDryHelper
   def ability_mapping
-    @ability_mapping ||= ::AbilityMapping.new # rubocop:disable Rails/HelperInstanceVariable
+    @ability_mapping ||= ::AbilityMapping.new
   end
 
   def can_by_path?(path, method = :get)

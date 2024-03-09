@@ -1,9 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Lint/RedundantCopDisableDirective:
-  Exclude:
-  - app/helpers/can_can_dry_helper.rb
 Rails/EagerEvaluationLogMessage:
   Exclude:
   - lib/can_can_dry/path_recognizer.rb
