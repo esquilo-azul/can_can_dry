@@ -2,7 +2,7 @@
 
 require 'can_can_dry/path_recognizer'
 
-RSpec.describe ::CanCanDry::PathRecognizer do
+RSpec.describe CanCanDry::PathRecognizer do
   describe '#remove_root_path' do
     [%w[/path/to/action /prefix/ /prefix/path/to/action],
      %w[/path/to/action /prefix /prefix/path/to/action],

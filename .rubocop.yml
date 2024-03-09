@@ -1,13 +1,6 @@
 ---
 inherit_gem:
   eac_rails_gem_support: ".rubocop.yml"
-Style/RedundantConstantBase:
-  Exclude:
-  - Gemfile
-  - lib/tasks/can_can_dry.rake
-  - spec/lib/can_can_dry/path_recognizer_spec.rb
-  - spec/lib/rubocop_check_spec.rb
-  - spec/spec_helper.rb
 Style/RedundantReturn:
   Exclude:
   - lib/can_can_dry/ability_mapping.rb

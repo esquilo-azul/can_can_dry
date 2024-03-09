@@ -14,7 +14,7 @@ namespace :can_can_dry do
   desc 'Inform the path and receive the controller/action.'
   task :path_recognize, [:path] => :environment do |_t, args|
     Aranha::AddressesController.new
-    r = ::CanCanDry::PathRecognizer.recognize('', args.path)
+    r = CanCanDry::PathRecognizer.recognize('', args.path)
     Rails.logger.info("Result: #{r}")
   end
 end
